@@ -7,6 +7,7 @@ from PIL import Image
 import time
 
 DINO_URL = "https://elgoog.im/t-rex/"
+BEGIN_TIME = time.time() + 8
 
 
 class Dinosaur:
@@ -24,7 +25,15 @@ class Dinosaur:
         screen.send_keys(Keys.UP)
 
     def take_screenshot(self):
-        im = pyautogui.screenshot(region=(425, 650, 100, 100))
+        seconds_elapsed = time.time() - BEGIN_TIME
+        if seconds_elapsed < 12:
+            im = pyautogui.screenshot(region=(425, 650, 100, 100))
+        elif 12 <= seconds_elapsed < 22:
+            im = pyautogui.screenshot(region=(435, 650, 100, 100))
+        elif 22 <= seconds_elapsed < 32:
+            im = pyautogui.screenshot(region=(455, 650, 100, 100))
+        else:
+            im = pyautogui.screenshot(region=(480, 650, 100, 100))
         im2 = im.convert("P", palette=Image.ADAPTIVE, colors=256)
         return im2.getpalette()
 
