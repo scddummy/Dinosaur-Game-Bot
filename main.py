@@ -22,12 +22,10 @@ class Dinosaur:
         time.sleep(8)
         screen = self.driver.find_element(By.TAG_NAME, value="body")
         screen.send_keys(Keys.UP)
-        return screen
 
     def take_screenshot(self):
-        im = pyautogui.screenshot(region=(400, 650, 100, 100))
+        im = pyautogui.screenshot(region=(425, 650, 100, 100))
         im2 = im.convert("P", palette=Image.ADAPTIVE, colors=256)
-        print(time.time())
         return im2.getpalette()
 
     def check_jump(self, palette):
